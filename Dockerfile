@@ -5,6 +5,7 @@ USER root
 COPY . /tmp/src
 
 RUN mv /tmp/src/.s2i/bin /tmp/scripts
+RUN pip install --no-cache-dir --trusted-host pypi.python.org --trusted-host files.pythonhosted.org powershift-cli[image]
 
 RUN rm -rf /tmp/src/.git* && \
     chown -R 1001 /tmp/src && \
@@ -19,6 +20,6 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     DISABLE_MIGRATE=1
 
 RUN /tmp/scripts/assemble
-RUN pip install --no-cache-dir --trusted-host pypi.python.org --trusted-host files.pythonhosted.org powershift-cli[image]
+
 
 CMD [ "/tmp/scripts/run" ]
