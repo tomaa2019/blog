@@ -19,5 +19,6 @@ ENV S2I_SCRIPTS_PATH=/usr/libexec/s2i \
     DISABLE_MIGRATE=1
 
 RUN /tmp/scripts/assemble
+RUN pip install --no-cache-dir --trusted-host pypi.python.org --trusted-host files.pythonhosted.org powershift-cli[image]
 
 CMD [ "/tmp/scripts/run" ]
